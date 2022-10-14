@@ -1,14 +1,38 @@
 import { defineComponent, ref, Transition, VNode, watchEffect } from 'vue';
-import { RouteLocationNormalizedLoaded, RouterView } from 'vue-router';
-import { useSwipe } from '../hooks/useSwipe';
-import s from './Welcome.module.scss'
+import {
+  RouteLocationNormalizedLoaded,
+  RouterView,
+  useRoute,
+  useRouter,
+} from "vue-router";
+import { useSwipe } from "../hooks/useSwipe";
+import { throllle } from "../shared/throttle";
+import s from "./Welcome.module.scss";
 export const Welcome = defineComponent({
   setup: (props, context) => {
-    const main = ref<HTMLElement | null>(null)
-    const { direction, swiping } = useSwipe(main)
+    const main = ref<HTMLElement>();
+    const { direction, swiping } = useSwipe(main, {
+      beforeStart: (e) => e.preventDefault(),
+    });
+    const route = useRoute();
+    const router = useRouter();
+
+    const push = throllle(() => {
+      if (route.name === "Welcome1") {
+        router.push("/Welcome/2");
+      } else if (route.name === "Welcome2") {
+        router.push("/Welcome/3");
+      } else if (route.name === "Welcome3") {
+        router.push("/Welcome/4");
+      } else if (route.name === "Welcome4") {
+        router.push("/start");
+      }
+    }, 500);
     watchEffect(() => {
-      console.log(swiping.value, direction.value)
-    })
+      if (swiping.value && direction.value === "left") {
+        push();
+      }
+    });
     return () => (
       <div class={s.wrapper}>
         <header>
@@ -18,7 +42,7 @@ export const Welcome = defineComponent({
           <h1>山竹记账</h1>
         </header>
         <main class={s.main} ref={main}>
-          <RouterView name="main">
+          <RouterView name="main" ref={main}>
             {({
               Component: X,
               route: R,
@@ -42,5 +66,5 @@ export const Welcome = defineComponent({
         </footer>
       </div>
     );
-  }
-})
+  },
+});
