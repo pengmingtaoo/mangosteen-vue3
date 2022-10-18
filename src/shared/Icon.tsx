@@ -5,7 +5,7 @@ export const Icon = defineComponent({
   props: {
     name: {
       type: String as PropType<
-        "add-bold" | "chart" | "clock" | "cloud" | "mangosteen" | "pig"
+        "add" | "chart" | "clock" | "cloud" | "mangosteen" | "pig"
       >,
     },
   },
