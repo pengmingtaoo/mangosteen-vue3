@@ -42,7 +42,7 @@ export const Welcome = defineComponent({
           <h1>山竹记账</h1>
         </header>
         <main class={s.main} ref={main}>
-          <RouterView name="main" ref={main}>
+          <RouterView name="main">
             {({
               Component: X,
               route: R,

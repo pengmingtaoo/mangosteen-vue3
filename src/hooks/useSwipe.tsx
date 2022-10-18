@@ -14,10 +14,7 @@ interface Options {
   afterEnd?: (e: TouchEvent) => void;
 }
 
-export const useSwipe = (
-  element: Ref<HTMLElement | undefined>,
-  options?: Options
-) => {
+export const useSwipe = (element: Ref<HTMLElement | undefined>, options?: Options) => {
   const start = ref<Point>();
   const end = ref<Point>();
   const swiping = ref(false); //移动
