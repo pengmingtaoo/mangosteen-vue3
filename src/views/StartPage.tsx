@@ -3,6 +3,7 @@ import { Button } from "../shared/Button";
 import { Center } from "../shared/Center";
 import { FloatButton } from "../shared/FloatButton";
 import { Icon } from "../shared/Icon";
+import { Navbar } from "../shared/Navbar";
 import s from "./StartPage.module.scss";
 
 export const StartPage = defineComponent({
@@ -13,16 +14,21 @@ export const StartPage = defineComponent({
 
     return () => (
       <div>
+        <Navbar>
+          {{
+            default: "山竹记账",
+            icon: (kclass: string) => <Icon name="menu" class={kclass} />,
+          }}
+        </Navbar>
+        <Center class={s.icon_wrapper}>
+          <Icon name="pig" class={s.icon} />
+        </Center>
         <div class={s.button_wrapper}>
-          <nav>menu</nav>
-          <Center class={s.icon_wrapper}>
-            <Icon name="pig" class={s.icon} />
-          </Center>
           <Button class={s.button} onClick={onClick}>
-            测试
+            开始记账
           </Button>
-          <FloatButton iconName="add"></FloatButton>
         </div>
+        <FloatButton iconName="add" />
       </div>
     );
   },
