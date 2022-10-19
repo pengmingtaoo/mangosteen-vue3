@@ -10,7 +10,8 @@ export type IconName =
   | "pig"
   | "menu"
   | "alarm"
-  | "export";
+  | "export"
+  | "return";
 
 export const Icon = defineComponent({
   props: {
