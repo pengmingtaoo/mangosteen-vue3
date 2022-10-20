@@ -11,7 +11,9 @@ export type IconName =
   | "menu"
   | "alarm"
   | "export"
-  | "return";
+  | "return"
+  | "note"
+  | "date";
 
 export const Icon = defineComponent({
   props: {
