@@ -31,34 +31,45 @@ export const InputPad = defineComponent({
       { text: "删", onClick: () => {} },
       { text: "确定", onClick: () => {} },
     ];
-    const refShowPop = ref(false);
-    return () => (
-      <>
-        <div class={s.dateAndNumber}>
-          <span class={s.date}>
-            <Icon name="date" class={s.icon} />
-            <span>
-              <span onClick={() => (refShowPop.value = true)}>
-                {time(refDate.value).format()}
+      const refDateVisible = ref(false);
+      const showDatePicker = () => (refDateVisible.value = true);
+      const hideDatePicker = () => (refDateVisible.value = false);
+      const setDate = (date: Date) => {
+        refDate.value = date;
+        hideDatePicker();
+      };
+      return () => (
+        <>
+          <div class={s.dateAndNumber}>
+            <span class={s.date}>
+              <Icon name="date" class={s.icon} />
+              <span>
+                <span onClick={showDatePicker}>
+                  {time(refDate.value).format()}
+                </span>
+                <Popup
+                  position="bottom"
+                  v-model:show={refDateVisible.value}
+                  round
+                >
+                  <DatetimePicker
+                    value={refDate.value}
+                    type="date"
+                    title="选择年月日"
+                    onConfirm={setDate}
+                    onCancel={hideDatePicker}
+                  />
+                </Popup>
               </span>
-              <Popup position="bottom" v-model:show={refShowPop.value} round>
-                <DatetimePicker
-                  v-model={refDate.value}
-                  type="date"
-                  title="选择年月日"
-                  onConfirm={() => (refShowPop.value = false)}
-                />
-              </Popup>
             </span>
-          </span>
-          <span class={s.amount}>199.3</span>
-        </div>
-        <div class={s.buttons}>
-          {buttons.map((button) => (
-            <button onClick={button.onClick}>{button.text}</button>
-          ))}
-        </div>
-      </>
-    );
+            <span class={s.amount}>199.3</span>
+          </div>
+          <div class={s.buttons}>
+            {buttons.map((button) => (
+              <button onClick={button.onClick}>{button.text}</button>
+            ))}
+          </div>
+        </>
+      );
   },
 });
