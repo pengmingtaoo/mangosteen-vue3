@@ -18,10 +18,11 @@ export const ItemCreate = defineComponent({
           icon: () => <Icon name="return" class={s.return} />,
           default: () => (
             <>
-              <Tabs
+              {/* <Tabs
                 selected={refkind.value}
                 onUpdateSelected={(name) => (refkind.value = name)}
-              >
+              > */}
+              <Tabs v-model:selected={refkind.value}>
                 <Tab name="支出">icon列表</Tab>
                 <Tab name="收入">icon列表</Tab>
               </Tabs>
