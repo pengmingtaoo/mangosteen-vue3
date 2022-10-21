@@ -19,7 +19,7 @@ export const InputPad = defineComponent({
       if (refAmount.value.length >= 16) {
         return;
       }
-      if (refAmount.value.length - dotIndex > 2) {
+      if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) {
         return;
       }
       if (nString === ".") {
@@ -30,7 +30,7 @@ export const InputPad = defineComponent({
       } else if (nString === "0") {
         if (dotIndex === -1) {
           //已经没有小数点
-          if (refAmount.value.indexOf("0") >= 0) {
+          if (refAmount.value === "0") {
             //没有小数点，但有0
             return;
           }
