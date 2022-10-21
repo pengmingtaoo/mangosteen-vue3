@@ -13,89 +13,119 @@ export const InputPad = defineComponent({
   setup(props, context) {
     const refDate = ref<Date>();
       const now = new Date();
-      const appendText = (n: number | string) =>
-        (refAmount.value += n.toString());
-      const buttons = [
-        {
-          text: "1",
-          onClick: () => {
-            appendText(1);
-          },
+    const appendText = (n: number | string) => {
+      const nString = n.toString();
+      const dotIndex = refAmount.value.indexOf(".");
+      if (refAmount.value.length >= 16) {
+        return;
+      }
+      if (refAmount.value.length - dotIndex > 2) {
+        return;
+      }
+      if (nString === ".") {
+        if (dotIndex >= 0) {
+          //已经有小数点
+          return;
+        }
+      } else if (nString === "0") {
+        if (dotIndex === -1) {
+          //已经没有小数点
+          if (refAmount.value.indexOf("0") >= 0) {
+            //没有小数点，但有0
+            return;
+          }
+        }
+      } else {
+        if (refAmount.value === "0") {
+          refAmount.value = "";
+        }
+      }
+      refAmount.value += n.toString();
+    };
+
+    const buttons = [
+      {
+        text: "1",
+        onClick: () => {
+          appendText(1);
         },
-        {
-          text: "2",
-          onClick: () => {
-            appendText(2);
-          },
+      },
+      {
+        text: "2",
+        onClick: () => {
+          appendText(2);
         },
-        {
-          text: "3",
-          onClick: () => {
-            appendText(3);
-          },
+      },
+      {
+        text: "3",
+        onClick: () => {
+          appendText(3);
         },
-        {
-          text: "清空",
-          onClick: () => {
-            refAmount.value = "0";
-          },
+      },
+      {
+        text: "4",
+        onClick: () => {
+          appendText(4);
         },
-        {
-          text: "4",
-          onClick: () => {
-            appendText(4);
-          },
+      },
+      {
+        text: "5",
+        onClick: () => {
+          appendText(5);
         },
-        {
-          text: "5",
-          onClick: () => {
-            appendText(5);
-          },
+      },
+      {
+        text: "6",
+        onClick: () => {
+          appendText(6);
         },
-        {
-          text: "6",
-          onClick: () => {
-            appendText(6);
-          },
+      },
+      {
+        text: "7",
+        onClick: () => {
+          appendText(7);
         },
-        { text: "+", onClick: () => {} },
-        {
-          text: "7",
-          onClick: () => {
-            appendText(7);
-          },
+      },
+      {
+        text: "8",
+        onClick: () => {
+          appendText(8);
         },
-        {
-          text: "8",
-          onClick: () => {
-            appendText(8);
-          },
+      },
+      {
+        text: "9",
+        onClick: () => {
+          appendText(9);
         },
-        {
-          text: "9",
-          onClick: () => {
-            appendText(9);
-          },
+      },
+      {
+        text: ".",
+        onClick: () => {
+          appendText(".");
         },
-        { text: "-", onClick: () => {} },
-        { text: ".", onClick: () => {} },
-        {
-          text: "0",
-          onClick: () => {
-            appendText(0);
-          },
+      },
+      {
+        text: "0",
+        onClick: () => {
+          appendText(0);
         },
-        { text: "删", onClick: () => {} },
-        { text: "确定", onClick: () => {} },
-      ];
-      const refDateVisible = ref(false);
-      const showDatePicker = () => (refDateVisible.value = true);
-      const hideDatePicker = () => (refDateVisible.value = false);
-      const setDate = (date: Date) => {
-        refDate.value = date;
-        hideDatePicker();
-      };
-      const refAmount = ref("");
+      },
+      {
+        text: "清空",
+        onClick: () => {
+          refAmount.value = "0";
+        },
+      },
+      { text: "提交", onClick: () => {} },
+    ];
+    const refDateVisible = ref(false);
+    const showDatePicker = () => (refDateVisible.value = true);
+    const hideDatePicker = () => (refDateVisible.value = false);
+    const setDate = (date: Date) => {
+      refDate.value = date;
+      hideDatePicker();
+    };
+    const refAmount = ref("0");
       return () => (
         <>
           <div class={s.dateAndNumber}>
