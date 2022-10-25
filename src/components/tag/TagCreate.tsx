@@ -1,16 +1,12 @@
-import { defineComponent, PropType, reactive } from "vue";
+import { defineComponent, reactive } from "vue";
+import { useRouter } from "vue-router";
 import { MainLayout } from "../../layouts/MainLayout";
 import { Button } from "../../shared/Button";
 import { EmojiSelect } from "../../shared/EmojiSelect";
 import { Icon } from "../../shared/Icon";
 import { Rules, validate } from "../../shared/validate";
-import s from "./TagCreate.module.scss";
+import s from "./Tag.module.scss";
 export const TagCreate = defineComponent({
-  props: {
-    name: {
-      type: String as PropType<string>,
-    },
-  },
   setup: (props, context) => {
     const formData = reactive({
       name: "",
@@ -35,11 +31,18 @@ export const TagCreate = defineComponent({
       Object.assign(errors, validate(formData, rules));
       e.preventDefault();
     };
+    const router = useRouter();
+    const onReturn = () => {
+      router.replace("/items/create");
+    };
+
     return () => (
       <MainLayout>
         {{
           title: () => "新建标签",
-          icon: () => <Icon name="return" onClick={() => {}} />,
+          icon: () => (
+            <Icon name="return" onClick={onReturn} class={s.return} />
+          ),
           default: () => (
             <form class={s.form} onSubmit={onSubmit}>
               <div class={s.formRow}>
