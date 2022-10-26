@@ -2,6 +2,9 @@ import { defineComponent, PropType } from "vue";
 import s from "./Tabs.module.scss";
 export const Tabs = defineComponent({
   props: {
+    classPrefix: {
+      type: String,
+    },
     selected: {
       type: String as PropType<string>,
     },
@@ -20,11 +23,16 @@ export const Tabs = defineComponent({
       }
 
       return (
-        <div class={s.tabs}>
-          <ol class={s.tabs_nav}>
+        <div class={[s.tabs, props.classPrefix + "_tabs"]}>
+          <ol class={[s.tabs_nav, props.classPrefix + "_tabs_nav"]}>
             {tabs.map((item) => (
               <li
-                class={item.props?.name === props.selected ? s.selected : ""}
+                class={[
+                  item.props?.name === props.selected
+                    ? [s.selected, props.classPrefix + "_selected"]
+                    : "",
+                  props.classPrefix + "_tabs_nav_item",
+                ]}
                 // onClick={() => props.onUpdateSelected?.(item.props?.name)}
                 onClick={() =>
                   context.emit("update:selected", item.props?.name)

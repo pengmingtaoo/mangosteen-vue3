@@ -8,11 +8,12 @@
         position: sticky;
         z-index: 1;
         top: 0;
+        background: var(--welcome-bg-end);
         >li{
             flex-grow: 1;
             flex-shrink: 0;
             padding: 12px 0;
-            background: var(--welcome-bg-end);
+
        
             &.selected{
                 position: relative;
