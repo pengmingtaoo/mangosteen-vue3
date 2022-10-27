@@ -15,7 +15,7 @@ export const TagCreate = defineComponent({
     };
 
     return () => (
-      <MainLayout>
+      <MainLayout class={s.tag_create}>
         {{
           title: () => "新建标签",
           icon: () => (

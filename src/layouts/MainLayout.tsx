@@ -4,7 +4,7 @@ import s from "./MainLayout.module.scss";
 export const MainLayout = defineComponent({
   setup(props, context) {
     return () => (
-      <div class={s.wrapper}>
+      <div class={s.MainLayout_wrapper}>
         <Navbar class={s.navbar}>
           {{
             default: () => context.slots.title?.(),

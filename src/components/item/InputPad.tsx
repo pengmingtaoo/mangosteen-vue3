@@ -1,6 +1,6 @@
 import { defineComponent, PropType, ref } from "vue";
 import { Icon } from "../../shared/Icon";
-import { time } from "../../shared/time";
+import { Time } from "../../shared/time";
 import s from "./InputPad.module.scss";
 import { DatetimePicker, Popup } from "vant";
 
@@ -12,7 +12,7 @@ export const InputPad = defineComponent({
   },
   setup(props, context) {
     const refDate = ref<Date>();
-      const now = new Date();
+    const now = new Date();
     const appendText = (n: number | string) => {
       const nString = n.toString();
       const dotIndex = refAmount.value.indexOf(".");
@@ -126,38 +126,38 @@ export const InputPad = defineComponent({
       hideDatePicker();
     };
     const refAmount = ref("0");
-      return () => (
-        <>
-          <div class={s.dateAndNumber}>
-            <span class={s.date}>
-              <Icon name="date" class={s.icon} />
-              <span>
-                <span onClick={showDatePicker}>
-                  {time(refDate.value).format()}
-                </span>
-                <Popup
-                  position="bottom"
-                  v-model:show={refDateVisible.value}
-                  round
-                >
-                  <DatetimePicker
-                    value={refDate.value}
-                    type="date"
-                    title="选择年月日"
-                    onConfirm={setDate}
-                    onCancel={hideDatePicker}
-                  />
-                </Popup>
+    return () => (
+      <>
+        <div class={s.dateAndNumber}>
+          <span class={s.date}>
+            <Icon name="date" class={s.icon} />
+            <span>
+              <span onClick={showDatePicker}>
+                {new Time(refDate.value).format()}
               </span>
+              <Popup
+                position="bottom"
+                v-model:show={refDateVisible.value}
+                round
+              >
+                <DatetimePicker
+                  value={refDate.value}
+                  type="date"
+                  title="选择年月日"
+                  onConfirm={setDate}
+                  onCancel={hideDatePicker}
+                />
+              </Popup>
             </span>
-            <span class={s.amount}>{refAmount.value}</span>
-          </div>
-          <div class={s.buttons}>
-            {buttons.map((button) => (
-              <button onClick={button.onClick}>{button.text}</button>
-            ))}
-          </div>
-        </>
-      );
+          </span>
+          <span class={s.amount}>{refAmount.value}</span>
+        </div>
+        <div class={s.buttons}>
+          {buttons.map((button) => (
+            <button onClick={button.onClick}>{button.text}</button>
+          ))}
+        </div>
+      </>
+    );
   },
 });

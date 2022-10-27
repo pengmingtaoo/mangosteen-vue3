@@ -26,9 +26,9 @@
   --overlay-user-text: white;
   --tabs--indicartor-bg:rgba(255,255,255,0.5);
   --tag-bg: #EFEFEF;
-  --button-border-color:#ddd;
   --amount-text:#53a867;
   --date-text:#999999;
+  --button-border-color:#ddd;
   --button-bg: white;
   --button-bg-important: #5C33BE;
   --button-text-important:white;
@@ -39,4 +39,11 @@
   --error-color: #E10505;
   --emoji-nav-text: #999;
   --emoji-nav-text-selected: #333;
+  --list-tag-text: #333;
+  --list-amount-text: var(--amount-text);
+  --list-time-text: var(--date-text);
+  --total-bg: #252A43;
+  --total-text: white;
+  --total-income: #FE7275;
+  --total-expenses: #53A867;
 }

@@ -64,7 +64,7 @@ export const ItemCreate = defineComponent({
       router.replace("/start");
     };
     return () => (
-      <MainLayout class={s.layout}>
+      <MainLayout class={s.item_create_layout}>
         {{
           title: () => "记一笔",
           icon: () => (

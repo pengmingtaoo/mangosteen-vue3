@@ -1,25 +1,18 @@
-.return{
-   width: 28px;
-        height: 28px;
-        position: relative;
-        top:2px;
-}
-.tips{
-  text-align: center;
-  padding: 16px 0;
-}
 .form {
   padding: 16px;
 }
 .formRow {
   margin-top: 8px;
-
 }
-
-
+.formLabel {
+  display: block;
+}
 .formItem {
   min-height: var(--input-min-height);
   max-width: 100%;
+  &.button {
+    width: 100%;
+  }
   &.input {
     flex-grow: 1;
     border: 1px solid var(--input-border-color);
@@ -33,12 +26,15 @@
       border-color: var(--error-color);
     }
   }
- 
+
   &_name {
   }
   &_value {
     display: flex;
     margin-top: 4px;
+    > * {
+      flex-grow: 1;
+    }
   }
   &_errorHint {
     margin-top: 4px;
@@ -46,17 +42,3 @@
     font-size: 12px;
   }
 }
-.button{
-    width: 100%;
-}
-.actions{
-  padding:0 16px 16px 16px;
-  display: flex;
-  justify-content: space-between;
-
-  .removeTags,.removeTagsAndItems{
-    width: calc(50% - 8px);
-  }
-
-}
-.tag_create{border: none;}
