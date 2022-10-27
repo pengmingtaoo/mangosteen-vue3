@@ -10,6 +10,7 @@
 .formItem {
   min-height: var(--input-min-height);
   max-width: 100%;
+
   &.button {
     width: 100%;
   }
@@ -42,3 +43,12 @@
     font-size: 12px;
   }
 }
+ .format{
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--input-radius);
+    font-size: 18px;
+    font-family: inherit;
+    box-shadow: inset 0 0 3px var(--input-shadow);
+  }
