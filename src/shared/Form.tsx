@@ -5,17 +5,17 @@ import s from './Form.module.scss';
 import { Time } from './time';
 export const Form = defineComponent({
     props: {
-    onSubmit: {
-      type: Function as PropType<(e: Event) => void>,
+        onSubmit: {
+            type: Function as PropType<(e: Event) => void>,
+        }
+    },
+    setup: (props, context) => {
+        return () => (
+            <form class={s.form} onSubmit={props.onSubmit}>
+                {context.slots.default?.()}
+            </form>
+        )
     }
-  },
-  setup: (props, context) => {
-    return () => (
-      <form class={s.form} onSubmit={props.onSubmit}>
-        {context.slots.default?.()}
-      </form>
-    )
-  }
 })
 export const FormItem = defineComponent({
   props: {
@@ -32,6 +32,7 @@ export const FormItem = defineComponent({
       type: String
     }
   },
+  emits:['update:modelValue'],
   setup: (props, context) => {
     const refDateVisible = ref(false)
     const content = computed(() => {
