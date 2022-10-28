@@ -1,0 +1,19 @@
+.logo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 46px 0 16px;
+  .icon{
+    width: 64px;
+    height: 64px;
+  }
+  .appName{
+    color:var(--appName-text);
+    font-weight: bold;
+    font-size: 32px;
+  }
+}
+.space{
+  padding-top: 100px;
+}
