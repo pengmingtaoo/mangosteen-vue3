@@ -10,7 +10,7 @@
 .formItem {
   min-height: var(--input-min-height);
   max-width: 100%;
-
+  border: none;
   &.button {
     width: 100%;
   }
@@ -34,8 +34,18 @@
   &.validationCodeButton{
     margin-left: 16px;
   }
-  &_name {
+  &.select {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--input-radius);
+    font-size: 18px;
+    outline: none;
+    font-family: inherit;
+    box-shadow: inset 0 0 3px var(--input-shadow);
+    background: var(--select-bg);
   }
+  
   &_value {
     display: flex;
     margin-top: 4px;
