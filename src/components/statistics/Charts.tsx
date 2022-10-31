@@ -1,4 +1,4 @@
-import { defineComponent, onMounted, PropType, ref } from 'vue'
+import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue'
 import { FormItem } from '../../shared/Form';
 import s from './Charts.module.scss';
 import * as echarts from 'echarts';
@@ -19,6 +19,18 @@ export const Charts = defineComponent({
     const category = ref('支出')
     const refDiv = ref<HTMLDivElement>()
     const refDiv2 = ref<HTMLDivElement>()
+    const date3 = reactive([
+      { tag: {id:1,name:'房租',sign:'x'},amount:3000 },
+      { tag: {id:2,name:'吃饭',sign:'x'},amount:2000 },
+      { tag: {id:3,name:'娱乐',sign:'x'},amount:1000 }
+    ])
+    const betterDate3 = computed(() => {
+      const total = date3.reduce((sum, item) => sum + item.amount, 0)
+      return date3.map(item => ({
+        ...item,
+        percent:Math.round(item.amount / total *100) + '%'
+      }))
+    })
     onMounted(() => {
       if (!refDiv.value) { return }
 
@@ -89,6 +101,28 @@ export const Charts = defineComponent({
 
       <div ref={refDiv} class={s.echart}></div>
       <div ref={refDiv2} class={s.echart2}></div>
+      <div class={s.echart3}>
+        {
+          betterDate3.value.map(({ tag, amount, percent }) => {
+            return (
+              <div class={s.topItem}>
+                <div class={s.sign}>
+                  {tag.sign}
+                </div>
+                <div class={s.bar_wrapper}>
+                  <div class={s.bar_text}>
+                    <span>{tag.name} - {percent}</span>
+                    <span>￥{amount}</span>
+                  </div>
+                  <div class={s.bar}>
+                    <div class={s.bar_inner}></div>
+                  </div>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
     </div>)
   }
 })
