@@ -5,6 +5,7 @@ import { Form, FormItem } from '../shared/Form';
 import { Icon } from '../shared/Icon';
 import { validate } from '../shared/validate';
 import s from './SignInPage.module.scss';
+import axios from 'axios'
 export const SignInPage = defineComponent({
   setup(props, context) {
     const formData = reactive({
@@ -21,14 +22,15 @@ export const SignInPage = defineComponent({
             email: [],
             code:[]
         })
-        const newErrors = validate(formData, [
+      Object.assign(errors,validate(formData, [
             {key:'email',type:'required',message:'必填'}, 
             {key:'email',type:'pattern',regex:/.+@.+/,message:'必须是邮箱格式'}, 
             {key:'code',type:'required',message:'必填'}
-        ])
-         Object.assign(errors,newErrors)
+        ]))
     }
-    const onClickSendValidationCode = () => { }
+        const onClickSendValidationCode = async() => {
+            // const response = await axios.post('/api/v1/validation_codes', { email: formData.email });
+        }
       return () =>
           <MainLayout>{
           {

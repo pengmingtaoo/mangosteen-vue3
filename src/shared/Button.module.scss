@@ -5,6 +5,10 @@
     color: var(--Button-text-color);
     font-size: var(-Button-font-size);
     border-radius: var(--Button-radius);
+    &[disabled]{
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
     &.normal{}
     &.important{}
     &.danger{
