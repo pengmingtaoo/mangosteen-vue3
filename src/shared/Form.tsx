@@ -3,6 +3,7 @@ import { computed, defineComponent, PropType, ref } from 'vue'
 import { Button } from './Button';
 import { EmojiSelect } from './EmojiSelect';
 import s from './Form.module.scss';
+import { getFriendlyError } from './getFriendlyError';
 import { Time } from './time';
 export const Form = defineComponent({
   props: {
@@ -56,7 +57,9 @@ export const FormItem = defineComponent({
         }
       },1000)
     }
-    context.expose({startCount})
+    
+    context.expose({ startCount })
+    
     const content = computed(() => {
       switch (props.type) {
         case 'text':
@@ -114,7 +117,7 @@ export const FormItem = defineComponent({
             {content.value}
           </div>
           <div class={s.formItem_errorHint}>
-            <span>{props.error ?? newLocal}</span>
+            <span>{props.error ? getFriendlyError(props.error) : newLocal}</span>
           </div>
 
         </label>
