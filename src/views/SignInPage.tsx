@@ -6,6 +6,7 @@ import { Icon } from '../shared/Icon';
 import { hasError, validate } from '../shared/validate';
 import s from './SignInPage.module.scss';
 import { http } from '../shared/Http';
+import { history } from '../shared/history';
 import { useBool } from '../hooks/useBool';
 export const SignInPage = defineComponent({
   setup(props, context) {
@@ -30,7 +31,9 @@ export const SignInPage = defineComponent({
             {key:'code',type:'required',message:'必填'}
       ]))
         if (!hasError(errors)) {
-         const response = await http.post('/session',formData)
+            const response = await http.post<{ jwt: string }>('/session', formData)
+            localStorage.setItem('jwt', response.data.jwt)
+            history.push('/start')
         }
        
     }
