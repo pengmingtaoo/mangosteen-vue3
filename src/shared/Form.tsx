@@ -37,17 +37,23 @@ export const FormItem = defineComponent({
     countFrom: {
       type: Number,
       default:60,
+    },
+    disabled: {
+     type: Boolean,
     }
+
   },
   emits: ['update:modelValue'],
 
   setup: (props, context) => {
-    const refDateVisible = ref(false)
+    const refDateVisible = ref(false)//显示隐藏时间
     const timer = ref<number>()
     const count = ref<number>(props.countFrom)
-    const isCounting = computed(()=> !!timer.value)//是否倒计时
+    const isCounting = computed(
+      () => timer.value !== undefined)//是否倒计时
 
     const startCount = () => {
+ 
       timer.value = setInterval(() => {
         count.value -= 1
         if (count.value === 0) {
@@ -74,8 +80,10 @@ export const FormItem = defineComponent({
         case 'validationCode':
           return <>
             <input class={[s.formItem, s.input, s.validationCodeInput]}
-            placeholder={props.placeholder}/>
-            <Button disabled={isCounting.value} onClick={props.onClick} 
+            value={props.modelValue}  placeholder={props.placeholder}
+            onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
+           />
+            <Button disabled={isCounting.value || props.disabled} onClick={props.onClick} 
             class={[s.formItem, s.button, s.validationCodeButton]}>
               { isCounting.value?`${count.value}s后可重新发送` : '发送验证码'}</Button>
           </>
@@ -107,7 +115,7 @@ export const FormItem = defineComponent({
       }
     })
     return () => {
-      const newLocal = '  ';
+      const newLocal = '　';
       return <div class={s.formRow}>
         <label class={s.formLabel}>
           {props.label &&
