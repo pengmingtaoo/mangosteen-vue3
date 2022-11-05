@@ -7,7 +7,7 @@ import { hasError, validate } from '../shared/validate';
 import s from './SignInPage.module.scss';
 import { http } from '../shared/Http';
 import { useBool } from '../hooks/useBool';
-import { useRouter } from 'vue-router';
+import { useRouter,useRoute } from 'vue-router';
 
 export const SignInPage = defineComponent({
   setup(props, context) {
@@ -20,6 +20,7 @@ export const SignInPage = defineComponent({
         code:[],
     })
     const router = useRouter()
+    const route = useRoute()
     const onSubmit = async (e: Event) => { 
         e.preventDefault()
         Object.assign(errors, {
@@ -34,7 +35,11 @@ export const SignInPage = defineComponent({
         if (!hasError(errors)) {
             const response = await http.post<{ jwt: string }>('/session', formData)
             localStorage.setItem('jwt', response.data.jwt)
-            router.push("/start")
+
+            // const retutnTo = localStorage.getItem('returnTo')
+            // router.push('/sign_in?return_to'+encodeURIComponent(route.fullPath))
+            const returnTo = route.query.return_to?.toString()
+            router.push(returnTo || '/start')
         }
        
     }
