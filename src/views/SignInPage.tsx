@@ -8,11 +8,12 @@ import s from './SignInPage.module.scss';
 import { http } from '../shared/Http';
 import { useBool } from '../hooks/useBool';
 import { useRouter,useRoute } from 'vue-router';
+import { refreshMe } from '../shared/me';
 
 export const SignInPage = defineComponent({
   setup(props, context) {
     const formData = reactive({
-        email: '1491614819@qq.com',
+        email: '',
         code:'',
     })
     const errors = reactive({
@@ -32,19 +33,23 @@ export const SignInPage = defineComponent({
             {key:'email',type:'pattern',regex:/.+@.+/,message:'必须是邮箱格式'}, 
             {key:'code',type:'required',message:'必填'}
       ]))
-        if (!hasError(errors)) {
+        if (!hasError(errors)) {//没有错误的情况下才会发请求
             const response = await http.post<{ jwt: string }>('/session', formData)
+            //登录成功保存jwt
             localStorage.setItem('jwt', response.data.jwt)
 
             // const retutnTo = localStorage.getItem('returnTo')
             // router.push('/sign_in?return_to'+encodeURIComponent(route.fullPath))
+            //登录前的路径
             const returnTo = route.query.return_to?.toString()
-            router.push(returnTo || '/start')
+            
+            router.push(returnTo || '/items/create')
+   
         }
-       
     }
+        
     const onError = (error:any) =>{
-        if (error.response.status === 422) {
+        if (error.response.status === 422) {//传值的格式或者类型有误
             Object.assign(errors,error.response.data.errors)
         }
         throw error
