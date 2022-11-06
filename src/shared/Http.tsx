@@ -9,10 +9,10 @@ export class Http {
       baseURL
     })
   }
-  get<R = unknown>(url: string, query?: Record<string, string>, config?: Omit<AxiosRequestConfig, 'params'|'url'|'data'|'method'>) {
-    this.instance.request<R>({
+  get<R = unknown>(url: string, query?: Record<string, string>, config?: Omit<AxiosRequestConfig, 'params' | 'url' | 'data' | 'method'>) {
+     return this.instance.request<R>({
       ...config,
-      url: url,
+      url,
       params: query,
       method:'get'
     })
@@ -33,8 +33,17 @@ export class Http {
 
 export const http = new Http('/api/v1')
 
+http.instance.interceptors.request.use(config => {
+//请求拦截，登录成功后跳转
+  const jwt = localStorage.getItem('jwt')
+  if (jwt) {
+    config.headers!.Authorization = `Bearer ${jwt}`
+  }
+  return config
+})
+
+
 http.instance.interceptors.response.use(response=>{
-  console.log('response')
   return response
 }, (error) => {
   if(error.response){
