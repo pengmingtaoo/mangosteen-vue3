@@ -27,9 +27,9 @@ export const mockTagIndex: Mock = (config) => {
       ...attrs
     }))
   if (config.params.kind === 'expenses') {
-    return [200, { resources:createTag(20) }]
+    return [200, { resources:createTag(40) }]
   } else {
-   return [200, { resources:createTag(20) }]
+   return [200, { resources:createTag(40) }]
   }
  
 }

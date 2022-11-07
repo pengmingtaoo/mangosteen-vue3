@@ -1,20 +1,20 @@
 .tabs{
     position: relative;
+
     &_nav{
         display: flex;
         justify-content: space-between;
         text-align: center;
         color: var(--navbar-text);
         position: sticky;
-        z-index: 1;
         top: 0;
+        z-index: var(--z-index-tabs);
         background: var(--welcome-bg-end);
         >li{
             flex-grow: 1;
             flex-shrink: 0;
             padding: 12px 0;
 
-       
             &.selected{
                 position: relative;
                 &::after{
@@ -32,4 +32,3 @@
         }
     }
 }
-

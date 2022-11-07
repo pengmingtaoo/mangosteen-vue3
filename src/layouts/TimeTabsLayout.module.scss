@@ -28,3 +28,14 @@
     }
   }
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 84px);
+}
+.tabs_wrapper{
+ flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+}
