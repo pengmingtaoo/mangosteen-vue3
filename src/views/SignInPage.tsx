@@ -34,9 +34,8 @@ export const SignInPage = defineComponent({
             {key:'code',type:'required',message:'必填'}
       ]))
         if (!hasError(errors)) {//没有错误的情况下才会发请求
-            const response = await http.post<{ jwt: string }>('/session', formData, {
-                params: { _mock: 'session' }
-            }).catch(onError)
+            const response = await http.post<{ jwt: string }>('/session', formData)
+                .catch(onError)
             
             //登录成功保存jwt
             localStorage.setItem('jwt', response.data.jwt)
