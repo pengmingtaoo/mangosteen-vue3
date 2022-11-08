@@ -15,3 +15,13 @@ type Tag = {
   sign: string,
   kind: expenses | income
 }
+
+type Resources<T = any> = {//T从这里传，T不传就=any
+  resources: T[]//接收一个数组，现不知道类型，现在用T占位
+  pager:{
+    page: number,
+    per_page: number,
+    count:number
+}
+ 
+}
