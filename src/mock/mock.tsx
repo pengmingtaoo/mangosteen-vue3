@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { AxiosRequestConfig } from 'axios';
-
+//number:状态码，any：任意的类型
 type Mock = (config: AxiosRequestConfig) => [number, any]
 
 faker.setLocale('zh_CN');
@@ -22,7 +22,7 @@ export const mockTagIndex: Mock = (config) => {
     return id
   }
 
-  const createPaper = (page = 1) => ({
+  const createPaper = (page = 1) => ({//创建页
     page, per_page, count
   })
   const createTag = (n = 1, attrs?: any) =>//创建tag

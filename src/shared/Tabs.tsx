@@ -31,7 +31,6 @@ export const Tabs = defineComponent({
                     : "",
                   props.classPrefix + "_tabs_nav_item",
                 ]}
-                // onClick={() => props.onUpdateSelected?.(item.props?.name)}
                 onClick={() =>
                   context.emit("update:selected", item.props?.name)
                 }
@@ -40,7 +39,9 @@ export const Tabs = defineComponent({
               </li>
             ))}
           </ol>
-          <div>{tabs.find((item) => item.props?.name === props.selected)}</div>
+          <div>{tabs.map((item) =>
+            <div v-show={item.props?.name === props.selected}>{item}</div>)}
+          </div>
         </div>
       );
     };
