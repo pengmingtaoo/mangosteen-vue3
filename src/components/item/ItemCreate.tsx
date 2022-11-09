@@ -17,7 +17,7 @@ export const ItemCreate = defineComponent({
       kind: '支出',
       tags_id: [],
       amunt: 0,
-      happen_at:new Date().toISOString()
+      happen_at: new Date().toISOString()
     })
     const router = useRouter();
 
@@ -36,23 +36,22 @@ export const ItemCreate = defineComponent({
         { params: { _mock: 'itemCreate' } }
       ).catch(onError)
       router.push("/items")
-  
+
     }
     return () => (
       <MainLayout class={s.item_create_layout}>
         {{
           title: () => "记一笔",
-          icon: () =><BackIcon />,
+          icon: () => <BackIcon />,
           default: () => (
             <>
               <div class={s.wrapper}>
                 <Tabs v-model:selected={formData.kind} class={s.tabs}>
                   <Tab name="支出" >
-                    <div>{JSON.stringify(formData)}</div>
                     <Tags kind="expenses" v-model:selected={formData.tags_id} />
                   </Tab>
                   <Tab name="收入">
-                    <Tags kind="income" v-model:selected={formData.tags_id}/>
+                    <Tags kind="income" v-model:selected={formData.tags_id} />
                   </Tab>
                 </Tabs>
                 <div class={s.inputPad_wrapper}>

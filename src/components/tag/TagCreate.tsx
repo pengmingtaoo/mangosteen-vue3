@@ -1,5 +1,4 @@
 import { defineComponent } from "vue";
-import { useRouter } from "vue-router";
 import { MainLayout } from "../../layouts/MainLayout";
 import { BackIcon } from "../../shared/BackIcon";
 import s from "./Tag.module.scss";

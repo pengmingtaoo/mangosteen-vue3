@@ -9,15 +9,15 @@ export const Tags = defineComponent({
   props: {
     kind: {
       type: String as PropType<string>,
-      required:true
+      required: true
     },
     selected: {
-     type: Number,
+      type: Number,
     }
   },
   emits: ['update:selected'],//保持类型一致
   setup(props, context) {
-      //请求数据
+    //请求数据
     const { tags, hasMore, fetchTags } = useTags((page) => {
       return http.get<Resources<Tag>>('/tags', {
         kind: props.kind,
@@ -25,24 +25,22 @@ export const Tags = defineComponent({
         _mock: 'tagIndex'
       })
     })
-    const onSelect = (tag:Tag) => {
+    const onSelect = (tag: Tag) => {
       //触发一个事件，向父页传输数据
-      context.emit('update:selected',tag.id)
+      context.emit('update:selected', tag.id)
     }
     return () =>
       <>
         <div class={s.tags_wrapper}>
-          <RouterLink to="/tags/create">
-            <div class={s.tag}>
-              <div class={s.sign}>
-                <Icon name="add" class={s.createTag} />
-              </div>
-              <div class={s.name}>新增</div>
+          <RouterLink to={`/tags/create?kind=${props.kind}`}class={s.tag}>
+            <div class={s.sign}>
+              <Icon name="add" class={s.createTag} />
             </div>
+            <div class={s.name}>新增</div>
           </RouterLink>
           {tags.value.map((tag) => (
             <div class={[s.tag, props.selected === tag.id ? s.selected : '']}
-              onClick={()=>onSelect(tag)}
+              onClick={() => onSelect(tag)}
             >
               <div class={s.sign}>{tag.sign}</div>
               <div class={s.name}>{tag.name}</div>
