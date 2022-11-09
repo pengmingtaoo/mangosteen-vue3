@@ -21,7 +21,23 @@ type Resources<T = any> = {//T从这里传，T不传就=any
   pager:{
     page: number,
     per_page: number,
-    count:number
+    count: number
+  }
 }
- 
+
+type Resource<T> = {
+  resource: T
+}
+
+type ResourceError = {
+  errors: Record<string, string[]>
+}
+
+type Item = {//记录
+  id: number
+  user_id: number
+  amount: number
+  tags_id: number[]
+  happen_at: string
+  kind: expenses | income
 }
