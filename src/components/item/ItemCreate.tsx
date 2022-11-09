@@ -3,6 +3,7 @@ import { Dialog } from 'vant';
 import { defineComponent, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { MainLayout } from "../../layouts/MainLayout";
+import { BackIcon } from "../../shared/BackIcon";
 import { http } from "../../shared/Http";
 import { Icon } from "../../shared/Icon";
 import { Tab, Tabs } from "../../shared/Tabs";
@@ -19,9 +20,6 @@ export const ItemCreate = defineComponent({
       happen_at:new Date().toISOString()
     })
     const router = useRouter();
-    const onReturn = () => {
-      router.replace("/start");
-    };
 
     const onError = (error: AxiosError<ResourceError>) => {
       if (error.response?.status === 422) {
@@ -37,16 +35,14 @@ export const ItemCreate = defineComponent({
       await http.post<Resource<Item>>('/items', formData,
         { params: { _mock: 'itemCreate' } }
       ).catch(onError)
-      // router.push("/items")
+      router.push("/items")
   
     }
     return () => (
       <MainLayout class={s.item_create_layout}>
         {{
           title: () => "记一笔",
-          icon: () => (
-            <Icon name="return" class={s.return} onClick={onReturn} />
-          ),
+          icon: () =><BackIcon />,
           default: () => (
             <>
               <div class={s.wrapper}>

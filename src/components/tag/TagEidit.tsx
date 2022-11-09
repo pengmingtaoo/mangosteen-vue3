@@ -1,24 +1,16 @@
-import { defineComponent, reactive } from "vue";
-import { useRouter } from "vue-router";
+import { defineComponent } from "vue";
 import { MainLayout } from "../../layouts/MainLayout";
+import { BackIcon } from "../../shared/BackIcon";
 import { Button } from "../../shared/Button";
-import { Icon } from "../../shared/Icon";
 import s from "./Tag.module.scss";
 import { TagForm } from "./TagForm";
 export const TagEidit = defineComponent({
   setup: (props, context) => {
-    const router = useRouter();
-    const onReturn = () => {
-      router.replace("/items/create");
-    };
-
     return () => (
       <MainLayout>
         {{
           title: () => "新建标签",
-          icon: () => (
-            <Icon name="return" onClick={onReturn} class={s.return} />
-          ),
+          icon: () => <BackIcon />,
           default: () => (
             <>
               <TagForm />
