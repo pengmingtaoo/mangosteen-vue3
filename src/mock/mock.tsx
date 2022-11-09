@@ -10,17 +10,17 @@ export const mockSession: Mock = (config) => {
     jwt: faker.random.word()
   }]
 }
-
-export const mockTagIndex: Mock = (config) => {
-
-  const { kind, page } = config.params
-  const per_page = 25
-  const count = 26
   let id = 0
   const createId = () => {
     id += 1
     return id
   }
+export const mockTagIndex: Mock = (config) => {
+
+  const { kind, page } = config.params
+  const per_page = 25
+  const count = 26
+
 
   const createPaper = (page = 1) => ({//创建页
     page, per_page, count

@@ -10,6 +10,7 @@ import { Tags } from "./Tags";
 export const ItemCreate = defineComponent({
   setup(props, context) {
     const refkind = ref("支出")
+    const refTagId = ref<number>()
 
     const router = useRouter();
     const onReturn = () => {
@@ -27,10 +28,10 @@ export const ItemCreate = defineComponent({
               <div class={s.wrapper}>
                 <Tabs v-model:selected={refkind.value} class={s.tabs}>
                   <Tab name="支出" >
-                    <Tags kind="expenses"></Tags>
+                    <Tags kind="expenses" v-model:selected={refTagId.value} />
                   </Tab>
                   <Tab name="收入">
-                    <Tags kind="income"></Tags>
+                    <Tags kind="income" v-model:selected={refTagId.value}/>
                   </Tab>
                 </Tabs>
                 <div class={s.inputPad_wrapper}>
