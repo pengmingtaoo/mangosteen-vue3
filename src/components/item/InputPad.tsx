@@ -50,7 +50,7 @@ export const InputPad = defineComponent({
       { text: ".", onClick: () => { appendText("."); } },
       { text: "0", onClick: () => { appendText(0); } },
       { text: "清空",  onClick: () => { refAmount.value = "0"; } },
-      { text: "提交", onClick: () => {context.emit('update:amount',refAmount.value)} },
+      { text: "提交", onClick: () => {context.emit('update:amount',parseFloat(refAmount.value))} },
     ];
     const refDateVisible = ref(false);
     const showDatePicker = () => (refDateVisible.value = true);
@@ -59,7 +59,7 @@ export const InputPad = defineComponent({
       context.emit('update:happenAt',date.toISOString())
       hideDatePicker();
     };
-    const refAmount = ref(props.amount||'0');
+    const refAmount = ref(props.amount ? props.amount.toString():'0');
     return () => (
       <>
         <div class={s.dateAndNumber}>
