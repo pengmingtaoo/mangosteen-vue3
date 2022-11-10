@@ -64,3 +64,14 @@ export const mockItemCreate: Mock = config => {
   }]
   
 }
+export const mockTagShow: Mock = config => {
+  const createTag = ( attrs?: any) =>//创建tag
+   ({
+      id: createId(),
+      name: faker.lorem.word(),//随机
+      sign: faker.internet.emoji(),
+      kind: 'expenses',
+      ...attrs
+    })
+  return [200, { resource:createTag() }]
+}
