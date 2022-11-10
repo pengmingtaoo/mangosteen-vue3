@@ -34,8 +34,8 @@ export const Tags = defineComponent({
     const timer = ref<number>()
     const currentTag = ref<HTMLDivElement>()
     const router = useRouter()
-    
-    const onLongPress = (tagId:Tag['id']) => {
+
+    const onLongPress = (tagId:Tag['id']) => {//长按之后跳转编辑
       router.push(`/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`)
     }
 
