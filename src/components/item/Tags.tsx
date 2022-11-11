@@ -1,4 +1,3 @@
-import { Tag } from 'vant';
 import { defineComponent, PropType, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router';
 import { Button } from '../../shared/Button';
