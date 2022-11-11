@@ -1,5 +1,6 @@
 import { defineComponent, onMounted, PropType, ref } from 'vue';
 import { Button } from '../../shared/Button';
+import { DateTime } from '../../shared/DateTime';
 import { FloatButton } from '../../shared/FloatButton';
 import { http } from '../../shared/Http';
 import { Money } from '../../shared/Money';
@@ -54,7 +55,7 @@ export const ItemSummary = defineComponent({
                   <span class={s.amount}>￥<Money value={item.amount}/></span>
                 </div>
                 <div class={s.time}>
-                  {item.happen_at}
+                  <DateTime value={item.happen_at} />
                 </div>
               </div>
             </li>
