@@ -34,7 +34,13 @@ export const mockTagIndex: Mock = (config) => {
       ...attrs
     }))
   const createBody = (n = 1, attrs?: any) => ({
-    resources:createTag(n),pager:createPaper(page)
+    resources: createTag(n),
+    pager: createPaper(page),
+    summary: {
+      income: 0,
+      expenses: 0,
+      balance: 0
+    }
   })
 
   if (kind === 'expenses' && (page === 1 || !page)) {
@@ -95,12 +101,21 @@ export const mockItemIndex: Mock = (config) => {
     per_page,
     count
   })
+  const createTag = (attrs?: any) =>
+    ({
+      id: createId(),
+      name: faker.lorem.word(),
+      sign: faker.internet.emoji(),
+      kind: 'expenses',
+      ...attrs
+    })
   const createItem = (n = 1, attrs?: any) =>
     Array.from({ length: n }).map(() => ({
       id: createId(),
       user_id: createId(),
       amount: Math.floor(Math.random() * 10000),
       tags_id: [createId()],
+      tags:[createTag()],
       happen_at: faker.date.past().toISOString(),
       kind:config.params.kind
     }))
@@ -115,4 +130,11 @@ export const mockItemIndex: Mock = (config) => {
   } else {
     return [200, {}]
   }
+}
+export const mockItemIndexBalance: Mock = (config) => {
+  return [200, {
+    expenses: 99000,
+    income: 99000,
+    balance: 0
+  }]
 }

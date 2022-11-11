@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { mockItemCreate, mockItemIndex, mockSession, mockTagEdit, mockTagIndex, mockTagShow } from "../mock/mock";
+import { mockItemCreate, mockItemIndex, mockItemIndexBalance, mockSession, mockTagEdit, mockTagIndex, mockTagShow } from "../mock/mock";
 
 type GetConfig = Omit<AxiosRequestConfig, 'params' | 'url' | 'method'>
 type PostConfig = Omit<AxiosRequestConfig, 'url' | 'data' | 'method'>
@@ -51,8 +51,9 @@ const mock = (response: AxiosResponse) => {
     case 'itemIndex':
       [response.status, response.data] = mockItemIndex(response.config)
       return true
-    // case 'tagCreate':
-    //   [response.status, response.data] = mockTagCreate(response.config)
+     case 'itemIndexBalance':
+      [response.status, response.data] = mockItemIndexBalance(response.config)
+      return true
     case 'session':
       [response.status, response.data] = mockSession(response.config)
       return true
@@ -72,16 +73,7 @@ http.instance.interceptors.request.use(config => {
 })
 
 //mock对response进行篡改
-// http.instance.interceptors.response.use(response => {
-//    mock(response)
-//   return response
-// }, (error) => {
-//   if (mock(error.response)) {
-//     return error.response
-//   } else {
-//     throw error
-//   }
-// })
+
 http.instance.interceptors.response.use(response => {
   mock(response)
   if (response.status >= 400) {
