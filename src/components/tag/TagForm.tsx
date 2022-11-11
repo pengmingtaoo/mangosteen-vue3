@@ -26,18 +26,10 @@ export const TagForm = defineComponent({
       e.preventDefault();
       const rules: Rules<typeof formData> = [
         { key: "name", type: "required", message: "必填" },
-        {
-          key: "name",
-          type: "pattern",
-          regex: /^.{1,4}$/,
-          message: "只能填 1 到 4 个字符",
-        },
+        { key: "name", type: "pattern", regex: /^.{1,4}$/, message: "只能填 1 到 4 个字符", },
         { key: "sign", type: "required", message: "必填" },
       ];
-      Object.assign(errors, {
-        name: [],
-        sign: [],
-      });
+      Object.assign(errors, { name: [], sign: [], });
       Object.assign(errors, validate(formData, rules));
       //发请求
       if (!hasError(errors)) {
@@ -57,11 +49,8 @@ export const TagForm = defineComponent({
     return () => (
       <Form onSubmit={onSubmit}>
         <FormItem label='标签名(最多4个字符)'
-          type="text"
-          v-model={formData.name}
-          error={errors['name']?.[0]} />
-        <FormItem label={'符号 ' + formData.sign}
-          type="emojiSelect" v-model={formData.sign}
+          type="text" v-model={formData.name} error={errors['name']?.[0]} />
+        <FormItem label={'符号 ' + formData.sign} type="emojiSelect" v-model={formData.sign}
           error={errors['sign']?.[0]} />
         <FormItem>
           <p class={s.tips}>记账时长按标签即可进行编辑</p>
