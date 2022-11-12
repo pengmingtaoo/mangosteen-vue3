@@ -10,6 +10,7 @@ const router = createRouter({ history, routes })
 
 fetchMe()
 
+//全局没登录都要登录
 router.beforeEach(async (to, from) => {
   if (to.path === '/' || to.path.startsWith('/welcome') || to.path.startsWith('/sign_in')
     || to.path === '/start') {

@@ -11,7 +11,6 @@ import { Second } from "../components/welcome/Second";
 import { SecondActions } from "../components/welcome/SecondActions";
 import { Third } from "../components/welcome/Third";
 import { ThirdActions } from "../components/welcome/ThirdActions";
-import { http } from "../shared/Http";
 import { ItemPage } from "../views/ItemPage";
 import { SignInPage } from "../views/SignInPage";
 import { StartPage } from "../views/StartPage";

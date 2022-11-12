@@ -62,12 +62,12 @@ const mock = (response: AxiosResponse) => {
 }
 
 export const http = new Http('/api/v1')
-
+//config 请求相关的配置
 http.instance.interceptors.request.use(config => {
   //请求拦截，登录成功后跳转
   const jwt = localStorage.getItem('jwt')
   if (jwt) {
-    config.headers!.Authorization = `Bearer ${jwt}`
+    config.headers!.Authorization = `Bearer ${jwt}`//http请求头里都有jwt
   }
   return config
 })

@@ -1,17 +1,18 @@
-.mask{
+.mask {
     position: fixed;
-    top:var(--top-safe-area-height);
+    top: var(--top-safe-area-height);
     left: 0;
     z-index: var(--z-index-overlay);
     background: var(--overlay-mask-bg);
     width: 100%;
     height: calc(100% - var(--top-safe-area-height));
 }
-.overlay{
+
+.overlay {
     position: fixed;
     z-index: var(--z-index-overlay);
     background: var(--overlay-bg);
-    top:var(--top-safe-area-height);
+    top: var(--top-safe-area-height);
     left: 0;
     width: 16em;
     height: calc(100% - var(--top-safe-area-height));
@@ -21,10 +22,18 @@
         padding: 32px 16px;
         background: var(--overlay-user-bg);
         color: var(--overlay-user-text);
-        p{
+
+        p {
             margin-top: 10px;
         }
+
+        .email {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
+
     .action {
         display: flex;
         justify-content: start;
@@ -34,15 +43,17 @@
         &_list {
             padding-top: 16px;
             font-size: 20px;
-         }
-        > .icon {
-         margin-right: 12px;
+        }
+
+        >.icon {
+            margin-right: 12px;
         }
     }
 }
-.icon{
+
+.icon {
     width: 30px;
     height: 30px;
     position: relative;
-    top:2px;
+    top: 2px;
 }
