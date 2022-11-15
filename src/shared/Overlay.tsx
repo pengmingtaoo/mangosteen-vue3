@@ -22,9 +22,10 @@ export const Overlay = defineComponent({
     })
     const onSignOut = async() => {
        await Dialog.confirm({
-        title: '确认',
-        message: '确定要退出登录吗？',
-      })
+         title: "确认",
+         message: "确定要退出登录吗？",
+       })
+      
       localStorage.removeItem('jwt')
     }
     return () => (

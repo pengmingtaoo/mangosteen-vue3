@@ -80,6 +80,7 @@ export const Charts = defineComponent({
         },
         {
           _mock: "itemSummary",
+          _autoLoading: true,
         }
       )
       data2.value = response.data.groups
