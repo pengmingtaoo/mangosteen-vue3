@@ -19,11 +19,16 @@ export const Tags = defineComponent({
   setup(props, context) {
     //请求数据
     const { tags, hasMore, fetchTags } = useTags((page) => {
-      return http.get<Resources<Tag>>('/tags', {
-        kind: props.kind,
-        page: page + 1,
-        _mock: 'tagIndex'
-      })
+      return http.get<Resources<Tag>>(
+        "/tags",
+        {
+          kind: props.kind,
+          page: page + 1,
+        },
+        {
+          _mock: "tagIndex",
+        }
+      )
     })
     const onSelect = (tag: Tag) => {
       //触发一个事件，向父页传输数据
