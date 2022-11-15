@@ -50,19 +50,19 @@ export const Charts = defineComponent({
         happen_after: props.startDate,
         happen_before: props.endDate,
         kind: kind.value,
-        group_by: "happend_at",
+        group_by: "happen_at",
         _mock: "itemSummary",
-      });
-      data1.value = response.data.groups;
-    });
+      })
+      data1.value = response.data.groups
+    })
     //
-    const data2 = ref<Data2>([]);
+    const data2 = ref<Data2>([])
     const betterData2 = computed<{ name: string; value: number }[]>(() =>
       data2.value.map((item) => ({
         name: item.tag.name,
         value: item.amount,
       }))
-    );
+    )
     onMounted(async () => {
       const response = await http.get<{ groups: Data2; summary: number }>("/items/summary", {
         happen_after: props.startDate,
@@ -70,9 +70,17 @@ export const Charts = defineComponent({
         kind: kind.value,
         group_by: "tag_id",
         _mock: "itemSummary",
-      });
-      data2.value = response.data.groups;
-    });
+      })
+      data2.value = response.data.groups
+    })
+
+    const betterData3 = computed<{ tag: Tag; amount: number; percent: number }[]>(() => {
+      const total = data2.value.reduce((sum, item) => sum + item.amount, 0)
+      return data2.value.map((item) => ({
+        ...item,
+        percent: Math.round((item.amount / total) * 100),
+      }))
+    })
 
     return () => (
       <div class={s.chart_wrapper}>
@@ -88,8 +96,8 @@ export const Charts = defineComponent({
 
         <LineChart data={betterData1.value} />
         <PiaChart data={betterData2.value} />
-        <Bar />
+        <Bar data={betterData3.value} />
       </div>
-    );
+    )
   },
 });
