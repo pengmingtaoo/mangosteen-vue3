@@ -1,8 +1,8 @@
-import * as echarts from 'echarts';
-import { defineComponent, onMounted, PropType, ref, watch } from "vue";
-import { getMoney } from '../../shared/Money';
-import { Time } from '../../shared/time';
-import s from './LineChart.module.scss';
+import * as echarts from "echarts"
+import { defineComponent, onMounted, PropType, ref, watch } from "vue"
+import { getMoney } from "../../shared/Money"
+import { Time } from "../../shared/time"
+import s from "./LineChart.module.scss"
 
 const echartsOption = {
   tooltip: {
@@ -10,8 +10,8 @@ const echartsOption = {
     trigger: "axis", //坐标轴触发
     formatter: ([item]: any) => {
       //提示框浮层内容格式器
-      const [x, y] = item.data;
-      return `${new Time(new Date(x)).format("YYYY年MM月DD日")} ￥${getMoney(y)}`;
+      const [x, y] = item.data
+      return `${new Time(new Date(x)).format("YYYY年MM月DD日")} ￥${getMoney(y)}`
     },
   },
   grid: [{ left: 5, right: 5, top: 20, bottom: 20 }],
@@ -44,7 +44,7 @@ const echartsOption = {
       show: true,
     },
   },
-};
+}
 
 export const LineChart = defineComponent({
   props: {
@@ -57,15 +57,15 @@ export const LineChart = defineComponent({
     },
   },
   setup(props, context) {
-    const refDiv = ref<HTMLDivElement>();
-    let chart: echarts.ECharts | undefined = undefined;
+    const refDiv = ref<HTMLDivElement>()
+    let chart: echarts.ECharts | undefined = undefined
     onMounted(() => {
       if (!refDiv.value) {
-        return;
+        return
       }
 
       // 基于准备好的dom，初始化echarts实例
-      chart = echarts.init(refDiv.value);
+      chart = echarts.init(refDiv.value)
       // 绘制图表
       chart.setOption({
         ...echartsOption,
@@ -75,8 +75,8 @@ export const LineChart = defineComponent({
             type: "line",
           },
         ],
-      });
-    });
+      })
+    })
     watch(
       () => props.data,
       () => {
@@ -86,14 +86,14 @@ export const LineChart = defineComponent({
               data: props.data,
             },
           ],
-        });
+        })
       }
-    );
+    )
 
     return () => (
       <div
         ref={refDiv}
         class={s.echart}></div>
-    );
+    )
   },
-});
+})
