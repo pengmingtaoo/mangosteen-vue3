@@ -153,7 +153,7 @@ export const ItemSummary = defineComponent({
             </div>
           </>
         )}
-        <RouterLink to="/">
+        <RouterLink to="/items/create">
           <FloatButton iconName="add" />
         </RouterLink>
       </div>

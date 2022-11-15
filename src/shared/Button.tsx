@@ -39,13 +39,13 @@ export const Button = defineComponent({
         return props.disabled
       }
     })
-    const onClick = () => {
-      props.onClick?.()
-      selfDisabled.value = true
-      setTimeout(()=>{
-        selfDisabled.value = false
-      },500)
-    }
+     const onClick = (e: MouseEvent) => {
+       props.onClick?.(e)
+       selfDisabled.value = true
+       setTimeout(() => {
+         selfDisabled.value = false
+       }, 500)
+     }
     return () => (
         <button disabled={_disabled.value} type={props.type} class={[s.button, s[props.level]]} onClick={onClick}>
         {context.slots.default?.()}
