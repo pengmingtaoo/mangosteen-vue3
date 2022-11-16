@@ -21,14 +21,14 @@ export const TagEidit = defineComponent({
     }
     const onDelete = async (options?: { withItems?: boolean }) => {
       await Dialog.confirm({
-        title: '确认',
-        message:'确定要删除吗？'
+        title: "确认",
+        message: "确定要删除吗？",
       })
       await http
         .delete(
           `/tags/${numberId}`,
           {
-            withItems: options?.withItems ? "true" : "false",
+            with_items: options?.withItems ? "true" : "false",
           },
           { _autoLoading: true }
         )
@@ -37,19 +37,24 @@ export const TagEidit = defineComponent({
     }
 
     return () => (
-      
       <MainLayout>
         {{
           title: () => "编辑标签",
           icon: () => <BackIcon />,
           default: () => (
             <>
-              <TagForm id={numberId}/>
+              <TagForm id={numberId} />
               <div class={s.actions}>
-                <Button level="danger" class={s.removeTags} onClick={()=>onDelete()}>
+                <Button
+                  level="danger"
+                  class={s.removeTags}
+                  onClick={() => onDelete({})}>
                   删除标签
                 </Button>
-                <Button level="danger" class={s.removeTagsAndItems} onClick={() => onDelete({withItems:true})} >
+                <Button
+                  level="danger"
+                  class={s.removeTagsAndItems}
+                  onClick={() => onDelete({ withItems: true })}>
                   删除标签和记账
                 </Button>
               </div>
@@ -57,6 +62,6 @@ export const TagEidit = defineComponent({
           ),
         }}
       </MainLayout>
-    );
+    )
   },
 });
