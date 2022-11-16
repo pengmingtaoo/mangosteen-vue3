@@ -1,4 +1,3 @@
-import { Icon } from "vant"
 import { defineComponent, onMounted, PropType, reactive, ref, watch } from "vue"
 import { RouterLink } from "vue-router"
 import { Button } from "../../shared/Button"
@@ -6,6 +5,7 @@ import { Center } from "../../shared/Center"
 import { DateTime } from "../../shared/DateTime"
 import { FloatButton } from "../../shared/FloatButton"
 import { http } from "../../shared/Http"
+import { Icon } from "../../shared/Icon"
 import { Money } from "../../shared/Money"
 import s from "./ItemSummary.module.scss"
 export const ItemSummary = defineComponent({

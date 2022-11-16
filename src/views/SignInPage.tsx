@@ -42,7 +42,7 @@ export const SignInPage = defineComponent({
         // router.push('/sign_in?return_to'+encodeURIComponent(route.fullPath))
         //登录前的路径
         const returnTo = route.query.return_to?.toString()
-        router.push(returnTo || "/")
+        router.push(returnTo || "/items")
       }
     }
     const onError = (error: any) => {

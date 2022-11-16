@@ -15,12 +15,12 @@ export const TagForm = defineComponent({
     const router = useRouter()
     if (!route.query.kind) { return ()=><div>参数错误</div>}
     const formData = reactive({
-      kind: route.query.kind.toString(),
+      kind: route.query.kind!.toString(),
       name: "",
       sign: "",
-      id:undefined
-    });
-    const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({})
+      id: undefined,
+    })
+    const errors = reactive<FormErrors<typeof formData>>({})
 
     const onSubmit = async (e: Event) => {
       e.preventDefault();
