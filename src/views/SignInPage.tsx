@@ -9,9 +9,11 @@ import { http } from "../shared/Http"
 import { useBool } from "../hooks/useBool"
 import { useRouter, useRoute } from "vue-router"
 import { BackIcon } from "../shared/BackIcon"
+import { useMeStore } from "../store/useMeStore"
 
 export const SignInPage = defineComponent({
   setup(props, context) {
+    const meStore = useMeStore()
     const formData = reactive({
       email: "",
       code: "",
@@ -42,7 +44,8 @@ export const SignInPage = defineComponent({
         // router.push('/sign_in?return_to'+encodeURIComponent(route.fullPath))
         //登录前的路径
         const returnTo = route.query.return_to?.toString()
-        router.push(returnTo || "/items")
+        meStore.refreshMe()
+        router.push(returnTo || "/")
       }
     }
     const onError = (error: any) => {
