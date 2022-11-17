@@ -7,8 +7,7 @@ type State = {
   page: number
 }
 type Actions = {
-  reset: () => void
-  _fetch: (firstPage: boolean, startDate?: string, endDate?: string) => void
+  _fetch: (firstPage: boolean, startDate?: string, endDate?: string) => void //内部的fetch
   fetchItems: (startDate?: string, endDate?: string) => void
   fetchNextPage: (startDate?: string, endDate?: string) => void
 }
@@ -21,12 +20,6 @@ export const useItemStroe = (id: string | string[]) =>
       page: 0,
     }),
     actions: {
-      reset() {
-        //重置
-        this.items = []
-        this.hasMore = false
-        this.page = 0
-      },
       async _fetch(firstPage, startDate, endDate) {
         if (!startDate || !endDate) {
           return
