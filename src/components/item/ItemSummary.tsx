@@ -7,6 +7,7 @@ import { FloatButton } from "../../shared/FloatButton"
 import { http } from "../../shared/Http"
 import { Icon } from "../../shared/Icon"
 import { Money } from "../../shared/Money"
+import { useMeStore } from "../../store/useMeStore"
 import s from "./ItemSummary.module.scss"
 export const ItemSummary = defineComponent({
   props: {
@@ -18,6 +19,7 @@ export const ItemSummary = defineComponent({
     },
   },
   setup: (props, context) => {
+    const meStore = useMeStore()
     const items = ref<Item[]>([])
     const hasMore = ref(false)
     const page = ref(0)
@@ -42,7 +44,11 @@ export const ItemSummary = defineComponent({
       hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count
       page.value += 1
     }
-    onMounted(fetchItems)
+    onMounted(async () => {
+      await meStore.mePromise
+      fetchItems()
+    })
+
     //自定义时间 items
     watch(
       () => [props.startDate, props.endDate],
@@ -76,7 +82,10 @@ export const ItemSummary = defineComponent({
       )
       Object.assign(itemsBalance, response.data)
     }
-    onMounted(fetchItemsBalance)
+    onMounted(async () => {
+      await meStore.mePromise
+      fetchItemsBalance()
+    })
     //自定义时间 Balance
     watch(
       () => [props.startDate, props.endDate],
