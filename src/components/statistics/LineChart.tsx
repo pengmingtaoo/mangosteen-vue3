@@ -21,7 +21,7 @@ const echartsOption = {
     boundaryGap: ["5%", "3%"], //坐标轴两边留白
     axisLabel: {
       //坐标轴刻度标签的相关设置。
-      formatter: (value: string, index: string) => new Time(new Date(value)).format("MM-DD"), //刻度标签的内容格式器
+      formatter: (value: string) => new Time(new Date(value)).format("MM-DD"), //刻度标签的内容格式器
     },
     axisTick: {
       //坐标轴刻度相关设置。
@@ -41,7 +41,7 @@ const echartsOption = {
     },
     axisLabel: {
       //坐标轴刻度标签的相关设置。
-      show: true,
+      show: false,
     },
   },
 }
