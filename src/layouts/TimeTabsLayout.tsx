@@ -10,58 +10,66 @@ const demo = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
+      required: false,
     },
     endDate: {
       type: String as PropType<string>,
-    }
-  }
+      required: false,
+    },
+  },
 })
 export const TimeTabsLayout = defineComponent({
   props: {
     component: {
       type: Object as PropType<typeof demo>,
-      required: true
+      required: true,
     },
     reRenderOnSwitchTab: {
       type: Boolean,
-      default:false
-    }
+      default: false,
+    },
+    hideThisYear: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
-    const refSelected = ref("本月");
-    const time = new Time();
+    const refSelected = ref("本月")
+    const time = new Time()
 
-    const tempTime = reactive({//自定义时间暂存区 
+    const tempTime = reactive({
+      //自定义时间暂存区
       start: new Time().format(),
       end: new Time().format(),
     })
 
-    const customTime = reactive<{//自定义时间
-      start?: string,
+    const customTime = reactive<{
+      //自定义时间
+      start?: string
       end?: string
     }>({})
     const timeList = [
       {
         start: time.firstDayOfMonth(),
-        end: time.lastDayOfMonth()
+        end: time.lastDayOfMonth(),
       },
       {
-        start: time.add(-1, 'month').firstDayOfMonth(),
-        end: time.add(-1, 'month').lastDayOfMonth()
+        start: time.add(-1, "month").firstDayOfMonth(),
+        end: time.add(-1, "month").lastDayOfMonth(),
       },
       {
         start: time.firstDayOfYear(),
-        end: time.lastDayOfYear()
-      }
+        end: time.lastDayOfYear(),
+      },
     ]
     const refOverlayVisible = ref(false)
     const onSubmitCustomTime = (e: Event) => {
       e.preventDefault()
       refOverlayVisible.value = false
-      Object.assign(customTime,tempTime)
+      Object.assign(customTime, tempTime)
     }
-    const onSelected = (value:string) => {
-      if (value === '自定义时间') { 
+    const onSelected = (value: string) => {
+      if (value === "自定义时间") {
         refOverlayVisible.value = true
       }
     }
@@ -74,10 +82,9 @@ export const TimeTabsLayout = defineComponent({
             <>
               <div class={s.wrapper}>
                 <Tabs
+                  classPrefix="customTabs"
                   v-model:selected={refSelected.value}
                   onUpdate:selected={onSelected}
-                  class-prefix={"customTabs"}
-                  class={s.tabs_wrapper}
                   reRenderOnSelect={props.reRenderOnSwitchTab}>
                   <Tab
                     value="本月"
@@ -107,8 +114,8 @@ export const TimeTabsLayout = defineComponent({
                     value="自定义时间"
                     name="自定义时间">
                     <props.component
-                      startDate={tempTime.start}
-                      endDate={tempTime.end}
+                      startDate={customTime.start}
+                      endDate={customTime.end}
                     />
                   </Tab>
                 </Tabs>
@@ -121,12 +128,12 @@ export const TimeTabsLayout = defineComponent({
                       <Form onSubmit={onSubmitCustomTime}>
                         <FormItem
                           label="开始时间"
-                          v-model={customTime.start}
+                          v-model={tempTime.start}
                           type="date"
                         />
                         <FormItem
                           label="结束时间"
-                          v-model={customTime.end}
+                          v-model={tempTime.end}
                           type="date"
                         />
                         <FormItem>
@@ -150,4 +157,4 @@ export const TimeTabsLayout = defineComponent({
       </MainLayout>
     )
   },
-});
+})

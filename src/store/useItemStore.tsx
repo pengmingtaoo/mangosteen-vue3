@@ -7,12 +7,11 @@ type State = {
   page: number
 }
 type Actions = {
-  _fetch: (firstPage: boolean, startDate?: string, endDate?: string) => void //内部的fetch
+  _fetch: (firstPage: boolean, startDate?: string, endDate?: string) => void
   fetchItems: (startDate?: string, endDate?: string) => void
   fetchNextPage: (startDate?: string, endDate?: string) => void
 }
-
-export const useItemStroe = (id: string | string[]) =>
+export const useItemStore = (id: string | (string | undefined)[]) =>
   defineStore<string, State, {}, Actions>(typeof id === "string" ? id : id.join("-"), {
     state: () => ({
       items: [],
@@ -52,4 +51,4 @@ export const useItemStroe = (id: string | string[]) =>
         this._fetch(true, startDate, endDate)
       },
     },
-  })
+  })()
