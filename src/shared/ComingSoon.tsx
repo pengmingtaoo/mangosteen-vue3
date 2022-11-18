@@ -1,4 +1,6 @@
 import { defineComponent, PropType } from "vue"
+import { MainLayout } from "../layouts/MainLayout"
+import { BackIcon } from "./BackIcon"
 import { Center } from "./Center"
 import s from "./ComingSoon.module.scss"
 import { Icon } from "./Icon"
@@ -10,15 +12,23 @@ export const ComingSoon = defineComponent({
   },
   setup(props, context) {
     return () => (
-      <div>
-        <Center class={s.pig_wrapper}>
-          <Icon
-            name="pig"
-            class={s.pig}
-          />
-        </Center>
-        <p class={s.text}>敬请期待</p>
-      </div>
+      <MainLayout>
+        {{
+          title: () => "敬请期待",
+          icon: () => <BackIcon />,
+          default: () => (
+            <>
+              <Center class={s.pig_wrapper}>
+                <Icon
+                  name="pig"
+                  class={s.pig}
+                />
+              </Center>
+              <p class={s.text}>敬请期待</p>
+            </>
+          ),
+        }}
+      </MainLayout>
     )
   },
 })
