@@ -28,6 +28,7 @@ export const Overlay = defineComponent({
       })
 
       localStorage.removeItem("jwt")
+      window.location.reload() //刷新页面
     }
     return () => (
       <>
