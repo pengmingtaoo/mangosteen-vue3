@@ -41,3 +41,6 @@ router.beforeEach((to, from) => {
   )
 })
 
+if (DEBUG) {
+  console.log("正在调试")
+}
