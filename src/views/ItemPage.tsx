@@ -1,7 +1,7 @@
-import { defineComponent, PropType } from "vue";
-import { RouterView } from "vue-router";
+import { defineComponent, PropType } from "vue"
+import { RouterView } from "vue-router"
 
-import s from "./ItemPage.module.scss";
+import s from "./ItemPage.module.scss"
 export const ItemPage = defineComponent({
   props: {
     name: {
@@ -9,6 +9,7 @@ export const ItemPage = defineComponent({
     },
   },
   setup(props, context) {
-    return () => <RouterView />;
+    return () => <RouterView />
   },
-});
+})
+export default ItemPage

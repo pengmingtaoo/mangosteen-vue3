@@ -1,6 +1,6 @@
-import { defineComponent, PropType } from "vue";
-import { RouterView } from "vue-router";
-import s from "./TagPage.module.scss";
+import { defineComponent, PropType } from "vue"
+import { RouterView } from "vue-router"
+import s from "./TagPage.module.scss"
 export const TagPage = defineComponent({
   props: {
     name: {
@@ -8,6 +8,7 @@ export const TagPage = defineComponent({
     },
   },
   setup(props, context) {
-    return () => <RouterView />;
+    return () => <RouterView />
   },
-});
+})
+export default TagPage

@@ -7,6 +7,27 @@ import { svgstore } from "./src/vite_plugins/svgstore";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  //Rollup chunk 优化
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: any) {
+          if (id.includes("echarts")) {
+            return "echarts"
+          }
+          if (id.includes("mock") || id.includes("faker")) {
+            return "mock"
+          }
+          if (id.includes("vant")) {
+            return "vant"
+          }
+          if (id.includes("node_modules")) {
+            return "vendor"
+          }
+        },
+      },
+    },
+  },
   plugins: [
     vue(),
     vueJsx({
@@ -32,4 +53,4 @@ export default defineConfig({
       },
     },
   },
-});
+})
