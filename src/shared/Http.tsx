@@ -32,8 +32,13 @@ export class Http {
     return this.instance.request<R>({ ...config, url: url, params: query, method: "delete" })
   }
 }
-
-export const http = new Http("/api/v1")
+function isDev() {
+  if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1" && location.hostname !== "192.168.3.57") {
+    return false
+  }
+  return true
+}
+export const http = new Http(isDev() ? "/api/v1" : "http://121.196.236.94:3000/")
 //config 请求相关的配置
 http.instance.interceptors.request.use((config) => {
   //请求拦截，登录成功后跳转
