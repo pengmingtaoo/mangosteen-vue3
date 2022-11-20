@@ -40,7 +40,3 @@ router.beforeEach((to, from) => {
     () => "/sign_in?return_to=" + from.path
   )
 })
-
-if (DEBUG) {
-  console.log("正在调试")
-}
