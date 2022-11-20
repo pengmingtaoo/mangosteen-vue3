@@ -30,6 +30,7 @@ export default defineConfig(({ command }) => {
         },
       },
     },
+    base: "/mangosteen-vue3/dist/",
     plugins: [
       vue(),
       vueJsx({
