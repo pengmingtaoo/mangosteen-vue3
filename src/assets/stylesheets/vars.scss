@@ -1,5 +1,5 @@
 :root {
-  --appName-text:#7878ff;
+  --appName-text:#2D515E;
   --welcome-card-bg: white;
   --welcome-text: white;
   --welcome-bg-start: #382F41;
@@ -8,9 +8,9 @@
   --welcome-nav-gap: 8px;
   --z-index-bottom-nav: 8; 
   --transition-duration: 0.5s;
-  --Button-bg: #5d33be;
+  --Button-bg: #2D515E;
   --Button-text-color:white;
-  --Button-font-size:18px;
+  --Button-font-size:0px;
   --Button-bg-danger:#e0513bea;
   --Button-radius:8px;
   --float-button-text:white;
@@ -24,9 +24,9 @@
   --z-index-van-overlay:32;
   --overlay-mask-bg:rgba(0,0,0,0.5);
   --overlay-bg:white;
-  --main: #5c33be;
+  --main: #2D515E;
   --top-safe-area-height:24px;
-  --overlay-user-bg: #5C33BE;
+  --overlay-user-bg: #2D515E;
   --overlay-user-text: white;
   --tabs--indicartor-bg:rgba(255,255,255,0.5);
   --tag-bg: #EFEFEF;
@@ -34,10 +34,10 @@
   --date-text:#999999;
   --button-border-color:#ddd;
   --button-bg: white;
-  --button-bg-important: #5C33BE;
+  --button-bg-important: #2D515E;
   --button-text-important:white;
   --input-min-height: 48px;
-  --input-border-color: #5c33be;
+  --input-border-color: #2D515E;
   --input-radius: var(--Button-radius);
   --input-shadow: rgba(0,0,0,0.25);
   --error-color: #E10505;
