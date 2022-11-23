@@ -38,6 +38,7 @@ export const ItemSummary = defineComponent({
       income: 0,
       balance: 0,
     })
+
     const fetchItemsBalance = async () => {
       if (!props.startDate || !props.endDate) {
         return
@@ -54,6 +55,7 @@ export const ItemSummary = defineComponent({
       )
       Object.assign(itemsBalance, response.data)
     }
+
     useAfterMe(fetchItemsBalance)
     watch(
       () => [props.startDate, props.endDate],

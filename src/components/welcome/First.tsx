@@ -1,5 +1,6 @@
 import s from './welcome.module.scss';
 import { FunctionalComponent } from "vue";
+import { Icon } from "../../shared/Icon"
 
 export const First: FunctionalComponent = () => {
   return (
@@ -13,7 +14,7 @@ export const First: FunctionalComponent = () => {
         还会省钱
       </h2>
     </div>
-  );
-};
+  )
+}
 
 First.displayName = 'First'

@@ -1,6 +1,7 @@
 import { defineComponent, ref, Transition, VNode, watchEffect } from "vue"
 import { RouteLocationNormalizedLoaded, RouterView, useRoute, useRouter } from "vue-router"
 import { useSwipe } from "../hooks/useSwipe"
+import { Icon } from "../shared/Icon"
 import { throllle } from "../shared/throttle"
 import s from "./Welcome.module.scss"
 export const Welcome = defineComponent({
@@ -31,10 +32,11 @@ export const Welcome = defineComponent({
     return () => (
       <div class={s.wrapper}>
         <header>
-          <svg>
-            <use xlinkHref="#mangosteen"></use>
-          </svg>
-          <h1>山竹记账</h1>
+          <Icon
+            name="fast"
+            class={s.icon}
+          />
+          <h1>快速记账</h1>
         </header>
         <main
           class={s.main}

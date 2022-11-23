@@ -3,17 +3,18 @@ import s from "./Icon.module.scss";
 
 export type IconName =
   | "add"
-  | "chart"
+  | "statistics"
   | "clock"
-  | "cloud"
-  | "mangosteen"
+  | "cloud_services"
+  | "fast"
+  | "atm"
   | "pig"
   | "menu"
   | "alarm"
   | "export"
   | "return"
   | "note"
-  | "date";
+  | "date"
 
 export const Icon = defineComponent({
   props: {

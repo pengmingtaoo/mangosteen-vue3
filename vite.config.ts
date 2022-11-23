@@ -30,13 +30,15 @@ export default defineConfig(({ command }) => {
         },
       },
     },
-    base: "/mangosteen-vue3/dist/",
+    // base: "/Quick-Account-Vue3/dist/",
     plugins: [
+      //使用tsx
       vue(),
       vueJsx({
         transformOn: true,
         mergeProps: true,
       }),
+
       svgstore(),
       styleImport({
         resolves: [VantResolve()],

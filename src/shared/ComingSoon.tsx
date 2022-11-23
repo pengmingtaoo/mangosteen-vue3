@@ -20,7 +20,7 @@ export const ComingSoon = defineComponent({
             <>
               <Center class={s.pig_wrapper}>
                 <Icon
-                  name="pig"
+                  name="atm"
                   class={s.pig}
                 />
               </Center>
