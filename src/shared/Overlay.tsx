@@ -12,6 +12,7 @@ export const Overlay = defineComponent({
   },
   setup(props, context) {
     const meStore = useMeStore()
+    const refSelected = ref(0)
     const close = () => {
       props.onClose?.()
     }
@@ -53,7 +54,20 @@ export const Overlay = defineComponent({
             <ul class={s.action_list}>
               <li>
                 <RouterLink
-                  to="/items"
+                  to="/items/list"
+                  active-class={s.selected}
+                  class={s.action}>
+                  <Icon
+                    name="fast"
+                    class={s.icon}
+                  />
+                  <span>返回首页</span>
+                </RouterLink>
+              </li>
+              <li>
+                <RouterLink
+                  to="/items/create"
+                  active-class={s.selected}
                   class={s.action}>
                   <Icon
                     name="pig"
@@ -65,6 +79,7 @@ export const Overlay = defineComponent({
               <li>
                 <RouterLink
                   to="/statistics"
+                  active-class={s.selected}
                   class={s.action}>
                   <Icon
                     name="statistics"
@@ -76,6 +91,7 @@ export const Overlay = defineComponent({
               <li>
                 <RouterLink
                   to="/export"
+                  active-class={s.selected}
                   class={s.action}>
                   <Icon
                     name="export"
@@ -87,6 +103,7 @@ export const Overlay = defineComponent({
               <li>
                 <RouterLink
                   to="/notify"
+                  active-class={s.selected}
                   class={s.action}>
                   <Icon
                     name="alarm"

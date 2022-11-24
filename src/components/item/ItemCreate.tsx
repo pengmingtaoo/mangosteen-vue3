@@ -1,11 +1,10 @@
 import { AxiosError } from "axios"
-
 import { Dialog } from "vant"
 import { defineComponent, reactive } from "vue"
 import { useRouter } from "vue-router"
 import { MainLayout } from "../../layouts/MainLayout"
-import { BackIcon } from "../../shared/BackIcon"
 import { http } from "../../shared/Http"
+import { OverlayIcon } from "../../shared/Overlay"
 import { Tab, Tabs } from "../../shared/Tabs"
 import { hasError, validate } from "../../shared/validate"
 import { InputPad } from "./InputPad"
@@ -66,7 +65,7 @@ export const ItemCreate = defineComponent({
       <MainLayout class={s.item_create_layout}>
         {{
           title: () => "记一笔",
-          icon: () => <BackIcon />,
+          icon: () => <OverlayIcon />,
           default: () => (
             <>
               <div class={s.wrapper}>

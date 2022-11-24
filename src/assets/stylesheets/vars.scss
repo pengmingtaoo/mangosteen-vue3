@@ -24,10 +24,14 @@
   --z-index-van-overlay:32;
   --overlay-mask-bg:rgba(0,0,0,0.5);
   --overlay-bg:white;
+  --overlay-text:white;
+  --overlay-selected-bg:#718EA0;
+  --overlay-selected-text:var(--overlay-text);
   --main: #2D515E;
   --top-safe-area-height:24px;
   --overlay-user-bg: #2D515E;
   --overlay-user-text: white;
+
   --tabs--indicartor-bg:rgba(255,255,255,0.5);
   --tag-bg: #EFEFEF;
   --amount-text:#53a867;

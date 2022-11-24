@@ -30,7 +30,7 @@ export default defineConfig(({ command }) => {
         },
       },
     },
-    // base: "/Quick-Account-Vue3/dist/",
+    base: "/Quick-Account-Vue3/dist/",
     plugins: [
       //使用tsx
       vue(),
