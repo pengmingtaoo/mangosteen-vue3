@@ -5,7 +5,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 20px 16px 12px;
+    padding: 10px 16px 12px;
      position: sticky;
      top:0;
      z-index: var(--navbar-z-index);
@@ -18,7 +18,6 @@
     width: 32px;
     height: 32px;
     display: flex;
-    justify-content: center;
     align-items: center;
     >*{
         max-width: 100%;
