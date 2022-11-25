@@ -36,8 +36,6 @@ export class Http {
 //选择后端的数据接口
 
 export const http = new Http(DEBUG ? "api/v1" : "http://121.196.236.94:3000/api/v1")
-console.log(DEBUG)
-console.log("DEBUG")
 
 //config 请求相关的配置
 http.instance.interceptors.request.use((config) => {
