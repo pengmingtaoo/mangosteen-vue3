@@ -36,7 +36,7 @@ export const Welcome = defineComponent({
             name="fast"
             class={s.icon}
           />
-          <h1>快速记账</h1>
+          <h1>闪速记账</h1>
         </header>
         <main
           class={s.main}

@@ -79,7 +79,7 @@ export const SignInPage = defineComponent({
                   name="fast"
                   class={s.icon}
                 />
-                <h1 class={s.appName}>快速记账</h1>
+                <h1 class={s.appName}>闪速记账</h1>
               </div>
               <Form onSubmit={onSubmit}>
                 <FormItem
@@ -92,7 +92,7 @@ export const SignInPage = defineComponent({
                   label="验证码"
                   ref={refValidationCode}
                   type="validationCode"
-                  countFrom={5}
+                  countFrom={60}
                   placeholder="请输入六位数字 "
                   onClick={onClickSendValidationCode}
                   disabled={refDisabled.value}

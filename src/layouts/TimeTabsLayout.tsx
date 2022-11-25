@@ -76,7 +76,7 @@ export const TimeTabsLayout = defineComponent({
     return () => (
       <MainLayout class={s.TimeTabsLayout_layout}>
         {{
-          title: () => "快速记账",
+          title: () => "闪速记账",
           icon: () => <OverlayIcon />,
           default: () => (
             <>
